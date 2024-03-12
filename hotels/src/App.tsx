@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
+import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
 import './App.css';
+import HotelList from './HotelList';
+import { setContext } from '@apollo/client/link/context';
 
-function App() {
+const httpLink = createHttpLink({
+  uri: 'https://graphql.contentful.com/content/v1/spaces/gyfunrv4a4ak',
+})
+
+const authLink = setContext((_, { headers }) => {
+  const accessToken = 'k9P9FQJcUpHKrHX3tXrgXunRyiS3qPchtY7V61tNruE';
+  return {
+    headers: {
+      ...headers,
+      authorization: accessToken ? `Bearer ${accessToken}` : '',
+    },
+  };
+});
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
+})
+
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <ApolloProvider client={client}>
+      <HotelList />
+    </ApolloProvider>
+  )
 }
 
 export default App;
