@@ -15,12 +15,16 @@ const HotelList: React.FC = () => {
     };
 
     return (
-        <>
-            <button onClick={loadHotels}>Load Hotels</button>
-            {data?.hotelCollection.items.map((hotelId: any, index: number) => (
-                <Hotel hotelId={hotelId} key={index} />
-            ))}
-        </>
+        <div className='container'>
+            <button onClick={loadHotels} className='loadHotels'>Load Hotels</button>
+            <div>
+                {data?.hotelCollection.items.map((hotelId: any) => {
+                    const id = hotelId.sys.id
+                    return (<Hotel hotelId={hotelId} key={id} />)
+                }
+                )}
+            </div>
+        </div>
     )
 }
 

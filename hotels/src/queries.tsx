@@ -29,23 +29,24 @@ query getHotel($hotelId: String!) {
   }`
 
 export const GET_REVIEWS = gql`
-query GetReviews {
-    reviewCollection {
-      items {
-        hotel {
-          sys {
-            id
-          }
-        }
-        feedback
-        customer {
-          firstName
-          lastName
-        }
-        comment {
-          json
-        }
+query GetReviewByHotelID($hotelId: String!) {
+  reviewCollection(where: { hotel: { sys: { id: $hotelId } } }) {
+    items {
+      title
+      rating
+      feedback
+      comment {
+        json
+      }
+      customer {
+        firstName
+        lastName
+      }
+      sys {
+        id
       }
     }
   }
+}
+
 `
