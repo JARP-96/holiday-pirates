@@ -1,4 +1,5 @@
-import { Price } from './interfaces'
+import { Price } from '../interfaces/interfaces'
+
 export const HotelPrice: React.FC<{ price: Price }> = ({ price }) => {
   const { value, symbol } = price
   return (

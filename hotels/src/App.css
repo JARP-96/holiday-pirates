@@ -1,3 +1,7 @@
+* {
+  transition: all 0.25s ease-in-out;
+}
+
 body {
   font-family: Arial, sans-serif;
   font-size: 16px;
@@ -27,11 +31,13 @@ h6 {
 }
 
 button {
-  background-color: #e5e5e5;
+  background-color: #6a3460;
+  color: white;
   padding: 20px;
-  border: 1px gray solid;
+  border: none;
   border-radius: 5px;
   padding: 20px 40px;
   font-size: 1.25em;
   font-weight: bold;
+  cursor: pointer;
 }

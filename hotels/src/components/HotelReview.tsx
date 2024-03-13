@@ -1,5 +1,5 @@
 import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer'
-import { Review } from './interfaces'
+import { Review } from '../interfaces/interfaces'
 import './Review.css'
 
 export const HotelReview: React.FC<{ review: Review }> = ({ review }) => {

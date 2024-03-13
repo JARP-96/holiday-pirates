@@ -5,8 +5,8 @@ import {
   createHttpLink,
 } from '@apollo/client'
 import './App.css'
-import HotelList from './HotelList'
 import { setContext } from '@apollo/client/link/context'
+import { HotelFinder } from './pages/HotelFinder'
 
 const httpLink = createHttpLink({
   uri: 'https://graphql.contentful.com/content/v1/spaces/gyfunrv4a4ak',
@@ -30,7 +30,7 @@ const client = new ApolloClient({
 const App: React.FC = () => {
   return (
     <ApolloProvider client={client}>
-      <HotelList />
+      <HotelFinder />
     </ApolloProvider>
   )
 }

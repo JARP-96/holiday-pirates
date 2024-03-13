@@ -7,34 +7,39 @@ export const GET_HOTELS = gql`
         sys {
           id
         }
+        name
+        rating
+        city
+        country
+        price
+        startDate
+        endDate
+        description {
+          json
+        }
       }
     }
   }
 `
 
-export const GET_HOTEL = gql`
-  query getHotel($hotelId: String!) {
-    hotel(id: $hotelId) {
-      name
-      rating
-      city
-      country
-      price
-      startDate
-      endDate
-      description {
-        json
-      }
+export const GET_IMAGES = gql`
+query getAssetCollection {
+  assetCollection (limit: 5){
+    items {
+      title
+      url
     }
   }
+}
 `
 
 export const GET_REVIEWS = gql`
   query GetReviewByHotelID($hotelId: String!) {
     reviewCollection(where: { hotel: { sys: { id: $hotelId } } }) {
       items {
-        title
-        rating
+        sys {
+          id
+        }
         feedback
         comment {
           json
@@ -42,9 +47,6 @@ export const GET_REVIEWS = gql`
         customer {
           firstName
           lastName
-        }
-        sys {
-          id
         }
       }
     }
