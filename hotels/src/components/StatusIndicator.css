@@ -1,0 +1,33 @@
+.loadingSpinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #6a3460;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.errorIcon {
+  width: 40px;
+  height: 40px;
+  background-color: #cc0101;
+  border-radius: 50%;
+  position: relative;
+}
+
+.errorIcon:before {
+  position: absolute;
+  content: 'X';
+  color: white;
+  font-weight: bold;
+  font-size: 1.5em;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -47%);
+}

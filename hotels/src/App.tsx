@@ -8,12 +8,14 @@ import './App.css'
 import { setContext } from '@apollo/client/link/context'
 import { HotelFinder } from './pages/HotelFinder'
 
+const spaceId = process.env.REACT_APP_CONTENTFUL_SPACE_ID
+const accessToken = process.env.REACT_APP_CONTENTFUL_ACCESS_TOKEN
+
 const httpLink = createHttpLink({
-  uri: 'https://graphql.contentful.com/content/v1/spaces/gyfunrv4a4ak',
+  uri: `https://graphql.contentful.com/content/v1/spaces/${spaceId}`,
 })
 
 const authLink = setContext((_, { headers }) => {
-  const accessToken = 'k9P9FQJcUpHKrHX3tXrgXunRyiS3qPchtY7V61tNruE'
   return {
     headers: {
       ...headers,

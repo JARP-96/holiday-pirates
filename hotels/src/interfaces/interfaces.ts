@@ -14,6 +14,17 @@ interface JSON {
   json: any
 }
 
+export interface Image {
+  title: string
+  url: string
+}
+
+export interface Images {
+  assetCollection: {
+    items: Image[]
+  }
+}
+
 export interface HotelData {
   sys: Sys
   name: string

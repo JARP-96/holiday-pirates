@@ -23,10 +23,6 @@ export const useReviewQuery = (hotelId: string) => {
     setShowReviews(!showReviews)
   }
 
-  /* if (loading)
-    return <StatusIndicator message='Loading reviews...' type='loading' />
-  if (error) return <StatusIndicator message={error.message} type='error' /> */
-
   return {
     loading,
     error,

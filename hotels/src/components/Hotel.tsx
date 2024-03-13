@@ -4,10 +4,11 @@ import { documentToPlainTextString } from '@contentful/rich-text-plain-text-rend
 import { Rating } from './Rating'
 import { HotelPrice } from './HotelPrice'
 import { germanDateFormat } from '../utils'
-import { HotelData } from '../interfaces/interfaces'
+import { HotelData, Image } from '../interfaces/interfaces'
 import { useReviewQuery } from '../hooks/useReviewQuery'
+import { StatusIndicator } from './StatusIndicator'
 
-export const Hotel: React.FC<{ hotel: HotelData; image?: any }> = ({
+export const Hotel: React.FC<{ hotel: HotelData; image: Image }> = ({
   hotel,
   image,
 }) => {
@@ -23,9 +24,21 @@ export const Hotel: React.FC<{ hotel: HotelData; image?: any }> = ({
     description,
   } = hotel
 
+  console.log(image)
+
   const hotelDescription = documentToPlainTextString(description.json)
 
-  const { showReviews, reviews, loadReviews } = useReviewQuery(sys.id)
+  const { loading, error, showReviews, reviews, loadReviews } = useReviewQuery(
+    sys.id
+  )
+
+  const Status = () => {
+    if (loading)
+      return <StatusIndicator type='loading' message='Loading hotels...' />
+    else if (error)
+      return <StatusIndicator type='error' message={error.message} />
+    else return <></>
+  }
 
   return (
     <div className='hotelContainer'>
@@ -69,6 +82,7 @@ export const Hotel: React.FC<{ hotel: HotelData; image?: any }> = ({
           </div>
         </div>
       </div>
+      <Status />
       {reviews && showReviews && <HotelReviews reviews={reviews} />}
     </div>
   )
