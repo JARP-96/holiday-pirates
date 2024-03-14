@@ -1,33 +1,28 @@
 import { gql } from '@apollo/client'
 
 export const GET_HOTELS = gql`
-  query getHotelCollection {
-    hotelCollection {
-      items {
-        sys {
-          id
-        }
-        name
-        rating
-        city
-        country
-        price
-        startDate
-        endDate
-        description {
-          json
+query getHotelCollection {
+  hotelCollection (limit: 5) {
+    items {
+      sys {
+        id
+      }
+      name
+      rating
+      city
+      country
+      price
+      startDate
+      endDate
+      description {
+        json
+      }
+      imagesCollection {
+        items {
+          title
+          url
         }
       }
-    }
-  }
-`
-
-export const GET_IMAGES = gql`
-query getAssetCollection {
-  assetCollection (limit: 5){
-    items {
-      title
-      url
     }
   }
 }

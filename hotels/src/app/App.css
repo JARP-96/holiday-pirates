@@ -2,10 +2,16 @@
   transition: all 0.25s ease-in-out;
 }
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 body {
   font-family: Arial, sans-serif;
   font-size: 16px;
   line-height: 1.6;
+  margin: 0 0 100px;
 }
 
 h1,
@@ -17,11 +23,6 @@ h6 {
   font-family: inherit;
   line-height: 1.2;
   margin: 0;
-}
-
-.container {
-  width: 80%;
-  margin: 0 auto;
 }
 
 .center {
@@ -40,4 +41,8 @@ button {
   font-size: 1.25em;
   font-weight: bold;
   cursor: pointer;
+}
+
+button:hover {
+  background-color: #9e4f8f;
 }

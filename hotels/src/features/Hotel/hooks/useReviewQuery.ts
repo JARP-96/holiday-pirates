@@ -6,7 +6,7 @@ export const useReviewQuery = (hotelId: string) => {
   const [showReviews, setShowReviews] = useState(false)
   const [reviews, setReviews] = useState(null)
 
-  const [fetchData, { loading, error, data }] = useLazyQuery(GET_REVIEWS, {
+  const [fetchData, { error, data }] = useLazyQuery(GET_REVIEWS, {
     variables: { hotelId },
   })
 
@@ -24,7 +24,6 @@ export const useReviewQuery = (hotelId: string) => {
   }
 
   return {
-    loading,
     error,
     showReviews,
     reviews,

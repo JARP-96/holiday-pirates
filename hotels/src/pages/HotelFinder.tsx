@@ -1,9 +1,10 @@
-import { HotelList } from '../components/HotelList'
-import { StatusIndicator } from '../components/StatusIndicator'
-import { useHotelListQuery } from '../hooks/useHotelListQuery'
+import './HotelFinder.css'
+import HotelList from '../features/Hotel/components/HotelList'
+import StatusIndicator from '../features/Hotel/components/StatusIndicator'
+import { useHotelListQuery } from '../features/Hotel/hooks/useHotelListQuery'
 
 export const HotelFinder = () => {
-  const { loading, error, hotels, images, loadHotels } = useHotelListQuery()
+  const { loading, error, hotels, loadHotels } = useHotelListQuery()
 
   const Status = () => {
     if (loading)
@@ -14,12 +15,18 @@ export const HotelFinder = () => {
   }
 
   return (
-    <div className='container'>
-      <div className='loadHotels center'>
-        <button onClick={loadHotels}>Load Hotels</button>
+    <div>
+      <div className='container'>
+        <div className='loadHotels center'>
+          <button onClick={loadHotels}>Load Hotels</button>
+        </div>
+        <Status />
+        {hotels && <HotelList hotels={hotels} />}
       </div>
-      <Status />
-      {hotels && images && <HotelList hotels={hotels} images={images} />}
+      <footer>
+        A <b>Jorge Antonio Ramírez Padilla</b> Assessment Test. Made with 🧡 for{' '}
+        <b>HolidayPirates</b>.
+      </footer>
     </div>
   )
 }

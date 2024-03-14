@@ -5,11 +5,12 @@
 .hotelContainer {
   border: 1px solid #aaaaaa;
   border-radius: 5px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   width: 100%;
+  overflow: hidden;
 }
 .hotelContainer:hover {
-  background: #ffe8d9;
+  background: #fcf1d7;
 }
 
 .hotelMainInformation {
@@ -58,7 +59,13 @@
   margin: 20px;
 }
 
-@media (max-width: 1080px) {
+.rowRightAligned {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+@media (max-width: 850px) {
   .hotelMainInformation {
     flex-direction: column;
   }

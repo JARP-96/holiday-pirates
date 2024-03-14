@@ -1,17 +1,15 @@
+import React, { useMemo } from 'react'
 import './Hotel.css'
-import { HotelReviews } from './HotelReviews'
+import HotelReviews from './HotelReviews'
 import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer'
-import { Rating } from './Rating'
-import { HotelPrice } from './HotelPrice'
-import { germanDateFormat } from '../utils'
-import { HotelData, Image } from '../interfaces/interfaces'
+import Rating from './Rating'
+import HotelPrice from './HotelPrice'
+import { germanDateFormat } from '../../../utils'
+import { HotelData } from '../types/types'
 import { useReviewQuery } from '../hooks/useReviewQuery'
-import { StatusIndicator } from './StatusIndicator'
+import StatusIndicator from './StatusIndicator'
 
-export const Hotel: React.FC<{ hotel: HotelData; image: Image }> = ({
-  hotel,
-  image,
-}) => {
+const Hotel: React.FC<{ hotel: HotelData }> = ({ hotel }) => {
   const {
     sys,
     name,
@@ -22,29 +20,26 @@ export const Hotel: React.FC<{ hotel: HotelData; image: Image }> = ({
     startDate,
     endDate,
     description,
+    imagesCollection,
   } = hotel
 
-  console.log(image)
-
-  const hotelDescription = documentToPlainTextString(description.json)
-
-  const { loading, error, showReviews, reviews, loadReviews } = useReviewQuery(
-    sys.id
+  // Memoize expensive computations
+  const hotelDescription = useMemo(
+    () => documentToPlainTextString(description.json),
+    [description.json]
+  )
+  const hotelImage = useMemo(
+    () => imagesCollection?.items[0],
+    [imagesCollection]
   )
 
-  const Status = () => {
-    if (loading)
-      return <StatusIndicator type='loading' message='Loading hotels...' />
-    else if (error)
-      return <StatusIndicator type='error' message={error.message} />
-    else return <></>
-  }
+  const { error, showReviews, reviews, loadReviews } = useReviewQuery(sys.id)
 
   return (
     <div className='hotelContainer'>
       <div className='hotelMainInformation'>
         <div className='hotelImageContainer'>
-          <img src={image.url} alt={image.title} />
+          <img src={hotelImage?.url} alt={hotelImage?.title} />
         </div>
         <div className='hotelInformation'>
           <div className='edgeElements'>
@@ -67,13 +62,7 @@ export const Hotel: React.FC<{ hotel: HotelData; image: Image }> = ({
                 {showReviews ? 'Hide reviews' : 'Show reviews'}
               </button>
             </div>
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'flex-end',
-              }}
-            >
+            <div className='rowRightAligned'>
               <HotelPrice price={price} />
               <div>
                 {germanDateFormat(startDate)} - {germanDateFormat(endDate)}
@@ -82,8 +71,10 @@ export const Hotel: React.FC<{ hotel: HotelData; image: Image }> = ({
           </div>
         </div>
       </div>
-      <Status />
+      {error && <StatusIndicator type='error' message={error.message} />}
       {reviews && showReviews && <HotelReviews reviews={reviews} />}
     </div>
   )
 }
+
+export default Hotel

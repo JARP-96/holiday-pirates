@@ -1,31 +1,29 @@
-interface Sys {
+type Sys = {
   id: string
 }
 
-// Hotel Interfaces
+// Hotel types
 
-export interface Price {
+export type Price = {
   value: string
   symbol: string
   currency: string
 }
 
-interface JSON {
+type JSON = {
   json: any
 }
 
-export interface Image {
+export type Image = {
   title: string
   url: string
 }
 
-export interface Images {
-  assetCollection: {
-    items: Image[]
-  }
+export type ImagesCollection = {
+  items: Image[]
 }
 
-export interface HotelData {
+export type HotelData = {
   sys: Sys
   name: string
   rating: number
@@ -35,22 +33,23 @@ export interface HotelData {
   startDate: string
   endDate: string
   description: JSON
+  imagesCollection: ImagesCollection
 }
 
-export interface Hotels {
+export type Hotels = {
   hotelCollection: {
     items: HotelData[]
   }
 }
 
-// Review Interfaces
+// Review types
 
-interface Customer {
+type Customer = {
   firstName: string
   lastName: string
 }
 
-export interface Review {
+export type Review = {
   sys: Sys
   title: string
   rating: number
@@ -59,7 +58,7 @@ export interface Review {
   customer: Customer
 }
 
-export interface Reviews {
+export type Reviews = {
   reviewCollection: {
     items: Review[]
   }
