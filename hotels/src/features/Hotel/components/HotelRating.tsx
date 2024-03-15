@@ -1,5 +1,5 @@
-const Rating: React.FC<{ rating: number }> = ({ rating }) => {
-  const stars = Math.min(rating, 5)
+const HotelRating: React.FC<{ rating: number }> = ({ rating }) => {
+  const stars = rating >= 0 ? Math.min(rating, 5) : 0
   const starIcons = '★'.repeat(stars)
   const emptyStars = '☆'.repeat(5 - stars)
   return (
@@ -9,4 +9,4 @@ const Rating: React.FC<{ rating: number }> = ({ rating }) => {
     </h2>
   )
 }
-export default Rating
+export default HotelRating

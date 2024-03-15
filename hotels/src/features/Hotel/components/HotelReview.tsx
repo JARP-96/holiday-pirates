@@ -1,9 +1,9 @@
 import React from 'react'
 import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer'
 import { Review } from '../types/types'
-import './Review.css'
+import './HotelReview.css'
 
-export const HotelReview: React.FC<{ review: Review }> = ({
+const HotelReview: React.FC<{ review: Review }> = ({
   review: { customer, comment, feedback },
 }) => {
   const reviewComment = React.useMemo(
@@ -12,11 +12,11 @@ export const HotelReview: React.FC<{ review: Review }> = ({
   )
 
   return (
-    <div className='review'>
-      <div className='reviewFeedback center'>
-        {feedback === 'positive' ? '+' : '-'}
+    <div className='single-review'>
+      <div className='feedback-badge center'>
+        <span>{feedback === 'positive' ? '+' : '-'}</span>
       </div>
-      <div className='reviewContent'>
+      <div className='review-details'>
         <h2>
           {customer.firstName} {customer.lastName}
         </h2>
@@ -25,3 +25,4 @@ export const HotelReview: React.FC<{ review: Review }> = ({
     </div>
   )
 }
+export default HotelReview

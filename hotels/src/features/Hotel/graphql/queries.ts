@@ -17,7 +17,7 @@ query getHotelCollection {
       description {
         json
       }
-      imagesCollection {
+      imagesCollection (limit: 1) {
         items {
           title
           url

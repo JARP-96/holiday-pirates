@@ -1,4 +1,4 @@
-.loadingSpinner {
+.loading-spinner {
   border: 4px solid rgba(0, 0, 0, 0.1);
   border-left-color: #6a3460;
   border-radius: 50%;
@@ -13,7 +13,7 @@
   }
 }
 
-.errorIcon {
+.error-icon {
   width: 40px;
   height: 40px;
   background-color: #cc0101;
@@ -21,7 +21,7 @@
   position: relative;
 }
 
-.errorIcon:before {
+.error-icon:before {
   position: absolute;
   content: 'X';
   color: white;

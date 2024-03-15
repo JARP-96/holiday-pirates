@@ -6,7 +6,7 @@ import {
 } from '@apollo/client'
 import './App.css'
 import { setContext } from '@apollo/client/link/context'
-import { HotelFinder } from '../pages/HotelFinder'
+import HotelFinder from '../pages/HotelFinder'
 
 const spaceId = process.env.REACT_APP_CONTENTFUL_SPACE_ID
 const accessToken = process.env.REACT_APP_CONTENTFUL_ACCESS_TOKEN

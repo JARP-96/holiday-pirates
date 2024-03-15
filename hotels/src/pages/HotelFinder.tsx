@@ -2,8 +2,9 @@ import './HotelFinder.css'
 import HotelList from '../features/Hotel/components/HotelList'
 import StatusIndicator from '../features/Hotel/components/StatusIndicator'
 import { useHotelListQuery } from '../features/Hotel/hooks/useHotelListQuery'
+import Button from '../features/Hotel/components/Button'
 
-export const HotelFinder = () => {
+export const HotelFinder: React.FC = () => {
   const { loading, error, hotels, loadHotels } = useHotelListQuery()
 
   const Status = () => {
@@ -17,11 +18,11 @@ export const HotelFinder = () => {
   return (
     <div>
       <div className='container'>
-        <div className='loadHotels center'>
-          <button onClick={loadHotels}>Load Hotels</button>
+        <div className='hotel-load-button center'>
+          <Button action={loadHotels} label='Load Hotels' />
         </div>
         <Status />
-        {hotels && <HotelList hotels={hotels} />}
+        <HotelList hotels={hotels} />
       </div>
       <footer>
         A <b>Jorge Antonio Ramírez Padilla</b> Assessment Test. Made with 🧡 for{' '}
@@ -30,3 +31,4 @@ export const HotelFinder = () => {
     </div>
   )
 }
+export default HotelFinder

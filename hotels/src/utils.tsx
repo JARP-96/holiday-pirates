@@ -1,4 +1,4 @@
-export const germanDateFormat = (dateString: string) => {
+export const setGermanDateFormat = (dateString: string) => {
   const date = new Date(dateString)
   return date.toLocaleDateString('de-DE', {
     day: '2-digit',

@@ -1,78 +1,90 @@
-.loadHotels {
+/* Renamed CSS classes */
+
+.hotel-load-button {
   margin: 5%;
 }
 
-.hotelContainer {
-  border: 1px solid #aaaaaa;
+.hotel-card-container {
   border-radius: 5px;
   margin-bottom: 30px;
   width: 100%;
   overflow: hidden;
+  background-color: white;
 }
-.hotelContainer:hover {
+.hotel-card-container:hover {
   background: #fcf1d7;
 }
 
-.hotelMainInformation {
+.hotel-main-info {
   display: flex;
 }
 
-.hotelImageContainer {
-  flex: 0 1 35%;
+.hotel-image-container {
+  flex: 0 1 40%;
   width: 100%;
+  height: 100%;
 }
 
-.hotelImageContainer img {
+.image-container {
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+  padding-bottom: 75%;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.image-container img {
+  position: absolute;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.hotelInformation {
-  flex: 0 1 65%;
+.hotel-info {
+  flex: 0 1 60%;
   padding: 30px;
-  border-left: 1px solid #aaaaaa;
 }
 
-.edgeElements {
+.edge-elements {
   display: flex;
   justify-content: space-between;
 }
 
-.location {
+.location-info {
   font-weight: normal;
 }
 
-.hotelDescription {
+.hotel-description {
   padding: 20px 0;
 }
 
-.hotelPrice {
+.hotel-price {
   font-size: 2.5em;
   margin-right: 0;
   color: #6a3460;
 }
 
-.statusIndicator {
+.status-indicator {
   display: flex;
   flex-direction: column;
   margin: 20px;
 }
 
-.rowRightAligned {
+.row-right-aligned {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 }
 
 @media (max-width: 850px) {
-  .hotelMainInformation {
+  .hotel-main-info {
     flex-direction: column;
   }
 }
 
 @media (max-width: 580px) {
-  .edgeElements {
+  .edge-elements {
     flex-direction: column;
   }
 }

@@ -2,12 +2,13 @@ import React, { useMemo } from 'react'
 import './Hotel.css'
 import HotelReviews from './HotelReviews'
 import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer'
-import Rating from './Rating'
+import Rating from './HotelRating'
 import HotelPrice from './HotelPrice'
-import { germanDateFormat } from '../../../utils'
+import { setGermanDateFormat } from '../../../utils'
 import { HotelData } from '../types/types'
 import { useReviewQuery } from '../hooks/useReviewQuery'
 import StatusIndicator from './StatusIndicator'
+import Button from './Button'
 
 const Hotel: React.FC<{ hotel: HotelData }> = ({ hotel }) => {
   const {
@@ -34,18 +35,22 @@ const Hotel: React.FC<{ hotel: HotelData }> = ({ hotel }) => {
   )
 
   const { error, showReviews, reviews, loadReviews } = useReviewQuery(sys.id)
+  const dateRange = `${setGermanDateFormat(startDate)} -
+  ${setGermanDateFormat(endDate)}`
 
   return (
-    <div className='hotelContainer'>
-      <div className='hotelMainInformation'>
-        <div className='hotelImageContainer'>
-          <img src={hotelImage?.url} alt={hotelImage?.title} />
+    <div className='hotel-card-container'>
+      <div className='hotel-main-info'>
+        <div className='hotel-image-container'>
+          <div className='image-container'>
+            <img src={hotelImage?.url} alt={hotelImage?.title} />
+          </div>
         </div>
-        <div className='hotelInformation'>
-          <div className='edgeElements'>
+        <div className='hotel-info'>
+          <div className='edge-elements'>
             <div>
               <h1>{name}</h1>
-              <h3 className='location'>
+              <h3 className='location-info'>
                 {city} - {country}
               </h3>
             </div>
@@ -53,20 +58,19 @@ const Hotel: React.FC<{ hotel: HotelData }> = ({ hotel }) => {
               <Rating rating={rating} />
             </div>
           </div>
-          <div className='hotelDescription'>
+          <div className='hotel-description'>
             <p>{hotelDescription}</p>
           </div>
-          <div className='edgeElements'>
+          <div className='edge-elements'>
             <div>
-              <button onClick={loadReviews}>
-                {showReviews ? 'Hide reviews' : 'Show reviews'}
-              </button>
+              <Button
+                action={loadReviews}
+                label={showReviews ? 'Hide reviews' : 'Show reviews'}
+              />
             </div>
-            <div className='rowRightAligned'>
+            <div className='row-right-aligned'>
               <HotelPrice price={price} />
-              <div>
-                {germanDateFormat(startDate)} - {germanDateFormat(endDate)}
-              </div>
+              <div>{dateRange}</div>
             </div>
           </div>
         </div>
