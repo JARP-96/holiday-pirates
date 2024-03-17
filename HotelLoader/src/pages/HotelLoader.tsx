@@ -1,10 +1,10 @@
-import './HotelFinder.css'
+import './HotelLoader.css'
 import HotelList from '../features/Hotel/components/HotelList'
 import StatusIndicator from '../features/Hotel/components/StatusIndicator'
 import { useHotelListQuery } from '../features/Hotel/hooks/useHotelListQuery'
 import Button from '../features/Hotel/components/Button'
 
-export const HotelFinder: React.FC = () => {
+export const HotelLoader: React.FC = () => {
   const { loading, error, hotels, loadHotels } = useHotelListQuery()
 
   const Status = () => {
@@ -31,4 +31,4 @@ export const HotelFinder: React.FC = () => {
     </div>
   )
 }
-export default HotelFinder
+export default HotelLoader

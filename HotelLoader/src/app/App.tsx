@@ -6,7 +6,7 @@ import {
 } from '@apollo/client'
 import './App.css'
 import { setContext } from '@apollo/client/link/context'
-import HotelFinder from '../pages/HotelFinder'
+import HotelLoader from '../pages/HotelLoader'
 
 const spaceId = process.env.REACT_APP_CONTENTFUL_SPACE_ID
 const accessToken = process.env.REACT_APP_CONTENTFUL_ACCESS_TOKEN
@@ -32,7 +32,7 @@ const client = new ApolloClient({
 const App: React.FC = () => {
   return (
     <ApolloProvider client={client}>
-      <HotelFinder />
+      <HotelLoader />
     </ApolloProvider>
   )
 }
